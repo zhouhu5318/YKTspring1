@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--指定灰色墨盒的bean元素，该元素的id为greyInk，class属性指定要实例化的类-->
+<bean id="greyInk" class="cn.ink.GreyInk"></bean>
+<!--指定彩色墨盒的bean元素，该元素的id为colorInk，class属性指定要实例化的类-->
+<bean id="colorInk" class="cn.ink.ColorInk"></bean>
+
+<!--指定A4纸的bean元素，该元素的id为4paper，class属性指定要实例化的类-->
+<bean id="4paper" class="cn.ink.TextPaper">
+<!--指定需要赋值的属性。charPerline需要赋值，TextPaper类需要写setCharperine()方法进行注入-->
+<property name="charPerLine" value="8"/>
+<!--指定需要赋值的属性。charPerline需要赋值，TextPaper类需要写setlinePerPage()方法进行注入-->
+<property name="linePerPage" value="6"/>
+</bean>
+<bean id="5paper" class="cn.ink.TextPaper">
+<!--指定需要赋值的属性。charPerline需要赋值，TextPaper类需要写setCharperine()方法进行注入-->
+<property name="charPerLine" value="6"/>
+<!--指定需要赋值的属性。charPerline需要赋值，TextPaper类需要写setlinePerPage()方法进行注入-->
+<property name="linePerPage" value="5"/>
+</bean>											
+
+<!--指定打印机的bean元素，该元素的id为painter，class属性指定要实例化的类-->
+<bean id="printer" class="cn.printer.Printer">
+<property name="ink" ref="greyInk"/>   <!--value="赋值" ref="赋元素对象"  -->   
+<property name="paper" ref="4paper"/>
+</bean>
+</beans>
